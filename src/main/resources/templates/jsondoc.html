@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<style>
+
+	button
+	{
+	  height:30px;
+	  width:150px;
+	  border-radius:8px;
+	  padding:10px;
+	  font-size:20px;
+	  height:52px;
+	  cursor:pointer;
+	  background-color: wheat;
+	}
+	textarea
+	{
+	  color:DarkSeaGreen;
+	  font-size:20px;
+	}
+	form {
+		display: table;
+	}
+	form div {
+		display: table-row;
+	}
+	label, input, span, select {
+		display: table-cell;
+		margin: 5px;
+		text-align: right;		
+	}
+	form div div {
+		display: table-cell;
+	}
+	.leftside {
+		width: 90%;
+	}
+	.rightsie {
+		width: 10%
+	}
+</style>
+
+
+<script type="text/javascript">
+  function copyToClipboard(element) {
+    var copyText = document.querySelector(element);
+    copyText.select();
+    document.execCommand("copy");
+  }
+
+</script>
+<title>RHPAM Project Asset Search Json Documents</title>
+</head>
+<body>
+<img src="/myLogo.png" alt="Red Hat Process Automation Manager" width="400" height="140">
+
+
+	<form action="#" th:action="@{/}" method="get">
+		<div>
+			<div  class="leftside">
+				<h1 th:text="'Project name: ' + ${projectPath}"></h1>
+			</div>
+			<div  class="rightside">
+				<input type="submit" value="Edit My Project Parameters">
+			</div>
+		</div>
+	</form>
+<hr>
+<h2>Json Documents for Use by Elasticsearch</h2>
+<br/>
+
+<h3>Project Document for Elasticsearch Bulk API</h3>
+
+<textarea id="project" rows="8" cols="100"  maxlength="60000" wrap="soft" readonly th:text="${projectJson}"></textarea>
+<br /><button onclick="copyToClipboard('#project')">Copy</button>
+
+<br /><br /><br />
+
+<h3>Business Process Documents for Elasticsearch Bulk API</h3>
+
+<textarea id="process" rows="16" cols="100" maxlength="60000" wrap="soft" readonly th:text="${processJson}"></textarea>
+<br /><button onclick="copyToClipboard('#process')">Copy</button>
+
+
+</body>
+</html>

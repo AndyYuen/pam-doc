@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<style>
+
+pre
+{
+  color:#000000;
+  font-size:20px;
+}
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+</head>
+<body>
+<h1>Json Document for Use by Elasticsearch</h1>
+<br/>
+<h2>Project Document</h2>
+
+
+<textarea id="project" rows="5" col="200" size="60" maxlength="60000">
+  line 1
+  lin2 2
+  lin2 3
+</textarea>
+
+<button onclick="copyToClipboard('#project')">Copy</button>
+
+<br />
+
+<h2>Business Process Documents for Elasticsearch Bulk API</h2>
+
+<pre id=”process”>Process</pre>
+<button onclick="copyToClipboard('#process')">Copy</button>
+
+
+<script type="text/javascript">
+  function copyToClipboard(element) {
+    alert(document.querySelector(element));
+    var copyText = document.querySelector(element);
+    copyText.select();
+    document.execCommand("copy");
+  }
+  
+  </script>
+
+</body>
+</html>

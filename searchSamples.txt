@@ -1,0 +1,49 @@
+POST projects/_bulk
+{"index":{"_id":"MySpace/Telco"}}
+{"assetCounts":[{"name":"Business Process","count":4},{"name":"Data Model","count":3},{"name":"Guided Decision Table","count":1},{"name":"REST Web Service","count":1}],"processes":[{"name":"Telco.asyncProvisioning"},{"name":"Telco.completionSignal"},{"name":"Telco.service"},{"name":"Telco.syncProvisoning"}],"@timestamp":"2021-08-11T05:01:29.906127Z","workItemHandlers":[{"name":"Log","constructor":"new org.jbpm.process.instance.impl.demo.SystemOutWorkItemHandler()"},{"name":"Rest","constructor":"new org.jbpm.process.workitem.rest.RESTWorkItemHandler(classLoader)"},{"name":"External Send Task","constructor":"new org.jbpm.process.workitem.jms.JMSSendTaskWorkItemHandler(\"java:/ConnectionFactory\", \"queue/KIE.SIGNAL\")"}],"dataModels":[{"package":"com.myspace.telco","name":"ProvisionRequest"},{"package":"com.myspace.telco","name":"ProvisionResponse"},{"package":"com.myspace.telco","name":"Service"}],"projectName":"MySpace/Telco","guidedRules":[{"ruleflowGroups":[{"name":"table"}],"name":"components"}]}
+
+
+# list all projects
+GET projects/_search?q=projectName:*
+
+# get info on project Telco
+GET processes/_search?q=projectName:Telco
+
+# get a particular project
+GET projects/_search?q=projectName:Telco
+
+# get business processes for a particular project that use subprocesses
+GET processes/_search?q=projectName:Telco AND _exists_:subprocesses
+
+# check another project
+GET processes/_search?q=projectName:"NewSpace/pam-poc-uc1" AND _exists_:subprocesses
+
+# get only the processes that invole subprocess restCall
+GET processes/_search?q=projectName:"NewSpace/pam-poc-uc1" AND subprocesses.name:uc1.restCall
+
+# get info on which rules contains the ruleflowGroup table
+GET projects/_search?q=guidedRules.ruleflowGroups.name:table OR drls.ruleflowGroups.name:table
+
+# get info on which rules contains the ruleflowGroup error-handling
+GET projects/_search?q=guidedRules.ruleflowGroups.name:error-handling OR drls.ruleflowGroups.name:error-handling
+
+# get projects containing dmns
+GET projects/_search?q=_exists_:dmns
+
+# which processes use dmns
+GET processes/_search?q=_exists_:dmns
+
+# which processes calls subprocesses
+GET processes/_search?q=_exists_:subprocesses
+
+# projects don't include additional workItemHandlers
+GET projects/_search?q=NOT (_exists_:workItemHandlers)
+
+# processes that use either restServices OR webServices
+GET processes/_search?q=_exists_:(restServices OR webServices)
+
+# processes that use restService with url like
+GET processes/_search?q=restServices.url:"https://pam-mock-services-test.apps.gnp1.aws.k8s.au.singtelgroup.net/billing/\*"
+
+# processes that use restService with url containing the string billing
+GET processes/_search?q=restServices.url:"\*billing"

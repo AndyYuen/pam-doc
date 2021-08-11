@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .small {
+            font-size: smaller;
+        }
+        .bolder {
+            font-weight: bolder;
+            font-style: italic;
+         }
+		span {
+    		color: red;
+    		font-style: italic;
+		}
+    </style>
+    <title>RHPAM Project Documentation</title>
+</head>
+<body>
+    <img src="/myLogo.png" alt="Red Hat Process Automation Manager Documentation Tool" width="200" height="140">
+    <h1>BPM Documentation And Search Web Application</h1>
+    <p >This web application generates documentation and, optionally, json documents which you can import into Elasticsearch and 
+    make queries on the assets of Red Hat Process Automation Manager projects.
+    </p>
+
+    <hr>
+	<form action="#" th:action="@{/}" method="post" th:object="${params}">
+		<h2>Specify Your Red Hat Process Automation Manager Project</h2>
+		<p class="bolder">All input fields are mandatory.
+		</p>
+		<p></p>
+        <label for="spaceName">The Space Name:</label><br/>
+        <input type="text" name="spaceName" id="spaceName" th:field="*{spaceName}"></input><br/>
+        <span th:if="${#fields.hasErrors('spaceName')}" th:errors="*{spaceName}"></span><br/>
+        <label for="messageRate" class="small">There can be multiple spaces configured in Red Hat Process AUtomation Manager's 
+        Business Centralweb UI eg, "MySpace" is the pre-configured space.
+        </label><p></p><br/>
+
+        <label for="projectName">The Project Name:</label><br>
+        <input type="text" name="projectName" id="projectName" th:field="*{projectName}"></input><br/>
+        <span th:if="${#fields.hasErrors('projectName')}" th:errors="*{projectName}"></span><br/>   
+        <label for="projectName" class="small">The project within the space you entered previously.</label><p></p><br/>
+        
+        <fieldset>
+        	<legend>Exclusive Options:</legend>
+			<input type="radio" id="documentation" name="option" value="documentation" th:checked="*{option} == 'documentation'"></input>
+			<label for="documentation">Generate Documentation for Project</label><br/>
+			<input type="radio" id="jsonDoc" name="option" value="jsonDoc" th:checked="*{option} == 'jsonDoc'"></input>
+			<label for="jsonDoc">Generate Json Documents for Elasticsearch</label><p></p><br/>         
+		</fieldset>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
