@@ -85,11 +85,17 @@ Please note that you need to execute the package mvn goal before creating the co
 ## Videos
 
 You can see my 3 videos on this tool:
-1. [![Introduction](https://img.youtube.com/vi/wBNwzBb3MaA/0.jpg)](https://youtu.be/wBNwzBb3MaA)
+1. Introducing my PAM documentation and asset search web application:
+<br>
+[![Introduction](https://img.youtube.com/vi/wBNwzBb3MaA/0.jpg)](https://youtu.be/wBNwzBb3MaA)
 
-2. [![Documentation Demo](https://img.youtube.com/vi/d8Ta82nhaes/0.jpg)](https://youtu.be/d8Ta82nhaes&feature=youtu.be)
+2. A documentation generation demo
+<br>
+[![Documentation Demo](https://img.youtube.com/vi/d8Ta82nhaes/0.jpg)](https://youtu.be/d8Ta82nhaes&feature=youtu.be)
 
-3. [![Asset Search Demo](https://img.youtube.com/vi/XCxTxV_Hsms/0.jpg)](https://youtu.be/XCxTxV_Hsms&feature=youtu.be)
+3. A project/asset search demo
+<br>
+[![Asset Search Demo](https://img.youtube.com/vi/XCxTxV_Hsms/0.jpg)](https://youtu.be/XCxTxV_Hsms&feature=youtu.be)
 
 
 ## ENJOY ;-) !!! 
